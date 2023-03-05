@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .text::-webkit-scrollbar{
+        width: 0;
+    }
+    .content::-webkit-scrollbar{
+        display: none;
+    }
+}
