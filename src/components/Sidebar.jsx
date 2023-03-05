@@ -77,7 +77,7 @@ const Sidebar = () => {
                         <div className='flex-[100%] flex flex-col relative'>
                             <p className='text-lg font-bold hidden lg:block'>{user.displayName}</p>
                             <span className='text-sm text-dark6 hidden lg:block'>UserHandle</span>
-                            <BsThreeDots onClick={() => setShoww(!showw)} className='absolute hidden lg:block text-lg font-bold cursor-pointer top-2/4 -translate-y-2/4 right-0'/>
+                            <BsThreeDots onClick={() => setShoww(!showw)} className='absolute text-lg font-bold cursor-pointer top-2/4 -translate-y-2/4 right-0'/>
                         </div>
                         <div className={`w-full absolute -top-16 bg-white shadow-xl border-dark7 border rounded-lg p-4 ${showw?'block':'hidden'}`}>
                             <button onClick={handleLogout} className='w-full h-full'>logout
@@ -108,12 +108,14 @@ const Sidebar = () => {
                     </div>
                 </div>
                 {user && (
-                    <div className='flex lg:w-full shadow-md rounded-full border border-dark7 lg:p-2 p-0 gap-2 items-center relative mt-6'>
-                        
+                    <div className='flex lg:w-full shadow-md rounded-full border border-dark7 p-2 gap-2 items-center relative mt-6'>
+                        <div className='w-10 h-10 flex-[30%] bg-blue text-white text-lg flex justify-center items-center aspect-square rounded-full'>
+                            <FaUserAlt/>
+                        </div>
                         <div className='flex-[100%] flex flex-col relative'>
                             <p className='text-lg font-bold'>{user.displayName}</p>
                             <span className='text-sm text-dark6'>UserHandle</span>
-                            <BsThreeDots onClick={() => setShow(!show)} className='absolute hidden lg:block text-lg font-bold cursor-pointer top-2/4 -translate-y-2/4 right-0'/>
+                            <BsThreeDots onClick={() => setShow(!show)} className='absolute text-lg font-bold cursor-pointer top-2/4 -translate-y-2/4 right-0'/>
                         </div>
                         <div className={`w-full absolute -top-16 bg-white shadow-xl border-dark7 border rounded-lg p-4 ${showw?'block':'hidden'}`}>
                             <button onClick={handleLogout} className='w-full h-full'>logout
