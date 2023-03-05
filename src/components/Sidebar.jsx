@@ -113,7 +113,7 @@ const Sidebar = () => {
                             <FaUserAlt/>
                         </div>
                         <div className='flex-[100%] flex flex-col relative'>
-                            <p className='text-lg font-bold'>{user.displayName}</p>
+                            <p className='text-base font-bold'>{user.displayName}</p>
                             <span className='text-sm text-dark6'>UserHandle</span>
                             <BsThreeDots onClick={() => setShow(!show)} className='absolute text-lg font-bold cursor-pointer top-2/4 -translate-y-2/4 right-0'/>
                         </div>
