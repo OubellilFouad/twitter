@@ -50,6 +50,7 @@ const Sidebar = () => {
   const handleLogout= async () => {
     await logout();
     setShoww(false)
+    setShow(false);
   }
   if(!mobile){
     return (
@@ -115,7 +116,7 @@ const Sidebar = () => {
                         <div className='flex-[100%] flex flex-col relative'>
                             <p className='text-base font-bold'>{user.displayName}</p>
                             <span className='text-sm text-dark6'>UserHandle</span>
-                            <BsThreeDots onClick={() => setShoww(!showw)} className='absolute text-lg font-bold cursor-pointer top-2/4 -translate-y-2/4 right-0'/>
+                            <BsThreeDots onClick={() => {setShoww(!showw)}} className='absolute text-lg font-bold cursor-pointer top-2/4 -translate-y-2/4 right-0'/>
                         </div>
                         <div className={`w-full absolute -top-16 bg-white shadow-xl border-dark7 border rounded-lg p-4 ${showw?'block':'hidden'}`}>
                             <button onClick={handleLogout} className='w-full h-full'>logout
