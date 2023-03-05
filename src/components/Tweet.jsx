@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthProvider'
 import { db } from '../firebase'
 import { doc, getDoc, updateDoc, onSnapshot } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
+import {FaUserAlt} from 'react-icons/fa';
 
 const Tweet = ({comments,likes, tweet, tweeter, id,posts,setPosts}) => {
   const [like,setLike] = useState(false);
@@ -13,14 +14,15 @@ const Tweet = ({comments,likes, tweet, tweeter, id,posts,setPosts}) => {
   const {users,user} = useAuth();
   const [commentCount,setCommentCount] = useState(comments);
   const navigate = useNavigate();
-  let author = users.filter((author) => author.uid === tweeter.uid)[0];
+  let author = users.filter((author) => author.uid === tweeter)[0];
   useEffect(() => {
     getDoc(doc(db,'tweets',id)).then((result) => {
         setTweetLikes(result.data().likes);
     })
+    console.log(author)
     getDoc(doc(db,'users',user.uid)).then((result) => {
         setPosts(result.data().likedPosts);
-        if(result.data().likedPosts.includes(id)){
+        if(result.data().likedPosts?.includes(id)){
             setLike(true);
         }
     })
@@ -75,13 +77,13 @@ const Tweet = ({comments,likes, tweet, tweeter, id,posts,setPosts}) => {
   return (
     <div data-id={id} className='flex flex-col p-4 bg-white gap-3 border-y border-y-dark7'>
         <div className='flex gap-4'>
-            <div className='w-12 h-12 rounded-full aspect-square bg-red-400'>
-                <img  src={author.photo} className='w-full rounded-full'/>
+            <div className='w-12 h-12 rounded-full aspect-square bg-blue text-xl flex justify-center items-center text-white'>
+                <FaUserAlt/>
             </div>
             <div className='flex flex-col gap-3 w-full'>
                 <div className='flex gap-2'>
-                    <p className='font-bold'>{author.name}</p>
-                    <span className='text-dark5'>{author.email}</span>
+                    <p className='font-bold'>{author?.name}</p>
+                    <span className='text-dark5'>{author?.email}</span>
                 </div>
                 <div onClick={navigateTo}>{tweet}</div>
                 {/* <div>image</div> */}

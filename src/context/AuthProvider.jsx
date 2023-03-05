@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect,useContext,createContext } from 'react'
-import {GoogleAuthProvider, onAuthStateChanged, signInWithPopup,signOut, setPersistence, inMemoryPersistence} from 'firebase/auth'
+import {GoogleAuthProvider, onAuthStateChanged, signInWithPopup,signOut, setPersistence, inMemoryPersistence, createUserWithEmailAndPassword, updateProfile} from 'firebase/auth'
 import { auth, db } from '../firebase';
 import { addDoc, collection, doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
 
@@ -14,11 +14,14 @@ const AuthProvider = ({children}) => {
   const [show,setShow] = useState(false);
   const colref = collection(db,'users');
   const tweetsref = collection(db,'tweets');
-  const signUp = () => {
-    const googleAuth = new GoogleAuthProvider();
-    signInWithPopup(auth,googleAuth).then((resp)=>{
-      setDoc(doc(db,'users',resp.user.uid),{name:resp.user.displayName,email:resp.user.email,photo:resp.user.photoURL,likedPosts:[]});
-    });
+  const signUp = (email,password,name) => {
+    // const googleAuth = new GoogleAuthProvider();
+    createUserWithEmailAndPassword(auth,email,password).then((res) => {
+      setDoc(doc(db,'users',res.user.uid),{name:name,email:res.user.email,photo:res.user.photoURL,likedPosts:[],uid:res.user.uid});
+      return updateProfile(auth.currentUser,{
+        displayName: name
+      })
+    })
   }
   const logout = () => {
     signOut(auth);

@@ -7,6 +7,7 @@ import {CgMoreO} from 'react-icons/cg'
 import {TiArrowSortedDown} from 'react-icons/ti'
 import { useAuth } from '../context/AuthProvider';
 import {GrClose} from 'react-icons/gr'
+import {FaUserAlt} from 'react-icons/fa';
 
 const nav = [
     {
@@ -70,7 +71,9 @@ const Sidebar = () => {
                 </div>
                 {user && (
                     <div className='flex lg:w-full shadow-md rounded-full border border-dark7 lg:p-2 p-0 gap-2 items-center relative lg:aspect-[0/0] aspect-square mt-6'>
-                        <img src={user.photoURL} className='w-10 h-10 flex-[30%] bg-red-200 aspect-square rounded-full'/>
+                        <div className='w-10 h-10 flex-[30%] bg-blue text-white text-lg flex justify-center items-center aspect-square rounded-full'>
+                            <FaUserAlt/>
+                        </div>
                         <div className='flex-[100%] flex flex-col relative'>
                             <p className='text-lg font-bold hidden lg:block'>{user.displayName}</p>
                             <span className='text-sm text-dark6 hidden lg:block'>UserHandle</span>
@@ -106,7 +109,7 @@ const Sidebar = () => {
                 </div>
                 {user && (
                     <div className='flex lg:w-full shadow-md rounded-full border border-dark7 lg:p-2 p-0 gap-2 items-center relative mt-6'>
-                        <img src={user.photoURL} className='w-10 h-10 flex-[30%] bg-red-200 aspect-square rounded-full'/>
+                        
                         <div className='flex-[100%] flex flex-col relative'>
                             <p className='text-lg font-bold'>{user.displayName}</p>
                             <span className='text-sm text-dark6'>UserHandle</span>

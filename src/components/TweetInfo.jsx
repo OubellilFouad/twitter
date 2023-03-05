@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthProvider'
 import { collection, doc, getDoc, onSnapshot, setDoc, updateDoc } from 'firebase/firestore'
 import { auth, db } from '../firebase'
 import { v4 as uuidv4 } from 'uuid'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import {FaUserAlt} from 'react-icons/fa';
 
 const TweetInfo = () => {
   const location = useLocation(); 
@@ -95,8 +95,8 @@ const TweetInfo = () => {
   return (
     <div className='flex flex-col bg-white'>
         <div className='flex gap-4 items-center p-4'>
-            <div className='w-14 h-14 rounded-full overflow-hidden bg-red-400'>
-                <img src={author.photo} alt="" />
+            <div className='w-14 h-14 rounded-full overflow-hidden bg-blue text-2xl text-white flex justify-center items-center'>
+                <FaUserAlt/>
             </div>
             <div className='flex flex-col'>
                 <p className='font-bold'>{author.name}</p>
@@ -119,8 +119,8 @@ const TweetInfo = () => {
             })}
         </div>
         <div className='flex p-4 w-full gap-6 border-b-dark7 border-b'>
-            <div className='w-12 h-12 rounded-full bg-blue overflow-hidden flex items-start'>
-                <img src={user?.photoURL}/>
+            <div className='w-12 h-12 rounded-full bg-blue text-xl text-white overflow-hidden flex items-center justify-center'>
+                <FaUserAlt/>
             </div>
             <div className='flex-1'>
                 <textarea onChange={(e)=>setComment(e.target.value)} value={comment} onKeyUp={(e) => handleKeyUp(e)} placeholder="What's on your mind" className='w-full py-3 resize-none h-14 text outline-none focus:border-b focus:border-b-dark7'/>
@@ -138,8 +138,8 @@ const TweetInfo = () => {
                     })
                     return(
                         <div key={commentID} className='flex p-4 gap-4 border-b-dark7 border-b'>
-                            <div className='w-12 h-12 rounded-full overflow-hidden bg-red-300'>
-                                <img src={commentAuthor?.photo} alt="" />
+                            <div className='w-12 h-12 rounded-full overflow-hidden bg-blue text-xl text-white flex justify-center items-center'>
+                                <FaUserAlt/>
                             </div>
                             <div className='flex flex-col'>
                                 <div className='flex gap-2 items-center'>
